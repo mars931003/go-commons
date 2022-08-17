@@ -1,4 +1,4 @@
-module github.com/mars931003/mongo
+module github.com/mars931003/go-commons/mongo
 
 go 1.18
 
