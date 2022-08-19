@@ -1,4 +1,4 @@
-package file
+package go_commons
 
 import (
 	"github.com/spf13/viper"
@@ -11,8 +11,10 @@ const (
 	ConfigFileName = "redis-config"
 )
 
+type ConfigFile *viper.Viper
+
 type ConfigFileReader interface {
-	YmlFileRead()
+	YmlFileRead() ConfigFile
 	JsonFileRead()
 	PropertiesFileRead()
 	XmlFileRead()
@@ -47,12 +49,12 @@ func resolveFilename(filepath string) (filename, fileType, dir string) {
 	return
 }
 
-func (c *configReader) YmlFileRead(filename, path, fileType string) {
+func (c *configReader) YmlFileRead() *viper.Viper {
 	//viper.AddConfigPath(c.Path)
 	//log.Println(c.Path, c.FileName, c.FileType)
-	viper.AddConfigPath("D:/golang/go_work/go-commons")
-	viper.SetConfigFile(filename)
-	viper.SetConfigType(fileType)
+	viper.AddConfigPath(c.Path)
+	viper.SetConfigName(c.FileName)
+	viper.SetConfigType(c.FileType)
 	if err := viper.ReadInConfig(); err != nil {
 		log.Printf("err : %s", err.Error())
 		panic("read config error ")
@@ -61,6 +63,7 @@ func (c *configReader) YmlFileRead(filename, path, fileType string) {
 	database := viper.Get("redis-client.database")
 	pwd := viper.Get("redis-client.pwd")
 	log.Println(host, database, pwd)
+	return viper.GetViper()
 }
 
 func (c *configReader) JsonFileRead() {

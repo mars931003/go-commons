@@ -1,4 +1,4 @@
-module github.com/mars931003/go-commons/file
+module go-commons/file
 
 go 1.18
 

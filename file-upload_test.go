@@ -1,4 +1,4 @@
-package mongo
+package go_commons
 
 import (
 	"log"

@@ -1,4 +1,4 @@
-package restful
+package go_commons
 
 import (
 	"github.com/emicklei/go-restful/v3"

@@ -1,4 +1,4 @@
-package file
+package go_commons
 
 import (
 	"log"
@@ -10,5 +10,5 @@ func TestNewConfigReader(t *testing.T) {
 	//log.Println(len("D:\\config.ini"))
 	log.Println(config.FileName, config.FileType, config.Path)
 
-	//YmlFileRead(config.FileName, config.Path, config.FileType)
+	config.YmlFileRead()
 }
